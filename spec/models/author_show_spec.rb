@@ -18,4 +18,11 @@ describe "Author Index page", type: :feature do
     visit authors_path
     expect(page).to have_link 'New', href: new_author_path
   end
+      it "should display author name and homepage" do
+        @alan = FactoryBot.create :author
+        visit author_path(@alan)
+        expect(page).to have_text(@alan.first_name)
+        expect(page).to have_text(@alan.last_name)
+        expect(page).to have_text(@alan.homepage)
+    end
 end
